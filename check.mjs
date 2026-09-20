@@ -7,7 +7,9 @@ const files=await walk(root); let references=0;
 for(const file of files.filter(p=>p.endsWith('.html'))){
   const html=await readFile(file,'utf8');
   if((html.match(/<h1[ >]/g)||[]).length!==1)throw new Error('Expected one h1: '+file);
-  if(!html.includes('lang="fr"'))throw new Error('Missing language: '+file);
+  const language = path.relative(root,file).startsWith('fr'+path.sep) ? 'fr' : 'en';
+  if(!html.includes('<html lang="'+language+'"'))throw new Error('Wrong document language: '+file);
+  if(!html.includes('hreflang="x-default"'))throw new Error('Missing default language metadata: '+file);
   for(const match of html.matchAll(/(?:href|src)="([^"]*)"/g)){
     const value=match[1]; if(!value)throw new Error('Empty URL: '+file);
     if(/^(https:|data:)/.test(value))continue;

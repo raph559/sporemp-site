@@ -2,16 +2,16 @@
 
 Site public : https://raph559.github.io/sporemp-site/
 
-Site statique en français, sans dépendance npm, sans compte visiteur et sans traceur. Ce dépôt contient uniquement le site et son illustration originale, aucun fichier du jeu ni donnée privée de développement.
+Site statique bilingue, anglais par défaut et français via le sélecteur EN / FR. Sans dépendance npm, compte visiteur ou traceur. Ce dépôt contient uniquement le site et son illustration originale, aucun fichier du jeu ni donnée privée de développement.
 
 ## Publier une actualité ou une mise à jour
 
-Modifier `content.json` directement sur GitHub, puis enregistrer la modification sur `main`. GitHub Actions reconstruit le site et le publie sur GitHub Pages.
+Modifier `content.en.json` (anglais) et `content.json` (français) directement sur GitHub, puis enregistrer les deux traductions sur `main`. Les actualités doivent avoir les mêmes slugs dans les deux langues. GitHub Actions reconstruit le site et le publie sur GitHub Pages. Les textes d’interface sont dans `i18n.mjs`.
 
 - `news` : ajouter un objet avec un `slug` unique (lettres minuscules et tirets), une date ISO `AAAA-MM-JJ`, une catégorie, un titre, un résumé et des paragraphes. Les articles sont triés du plus récent au plus ancien.
 - `releases` : ajouter les versions en tête de liste, avec leurs changements et leurs limites.
 - `roadmap` : modifier les objectifs et leur statut, sans présenter les travaux prévus comme déjà disponibles.
-- `leetchiUrl` : remplacer `null` par l’URL HTTPS exacte de la cagnotte. Le bouton de don apparaît automatiquement. Tant que l’URL manque, le site annonce simplement que la cagnotte sera ajoutée.
+- `leetchiUrl` dans `content.json` : remplacer `null` par l’URL HTTPS exacte de la cagnotte. Ce destinataire est partagé entre les deux langues. Le bouton de don apparaît automatiquement. Tant que l’URL manque, le site annonce simplement que la cagnotte sera ajoutée.
 
 Le contenu initial est un bilan du développement au 15 septembre 2026. Les versions du launcher présentées sont des versions de développement. Aucun téléchargement public n’est annoncé.
 
