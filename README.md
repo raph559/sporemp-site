@@ -1,23 +1,36 @@
-# SporeMP — site de présentation
+# SporeMP — project website
 
-Site public : https://raph559.github.io/sporemp-site/
+Live website: https://raph559.github.io/sporemp-site/
 
-Site statique bilingue, anglais par défaut et français via le sélecteur EN / FR. Sans dépendance npm, compte visiteur ou traceur. Ce dépôt contient uniquement le site et son illustration originale, aucun fichier du jeu ni donnée privée de développement.
+A bilingual static website, with English as the default and French available through the EN / FR selector. It has no npm dependencies, visitor accounts or trackers. This repository contains the website and its original illustration, without game files or private development data.
 
-## Publier une actualité ou une mise à jour
+## Publish news and development updates
 
-Modifier `content.en.json` (anglais) et `content.json` (français) directement sur GitHub, puis enregistrer les deux traductions sur `main`. Les actualités doivent avoir les mêmes slugs dans les deux langues. GitHub Actions reconstruit le site et le publie sur GitHub Pages. Les textes d’interface sont dans `i18n.mjs`.
+Edit `content.json` for English content and `locales/fr/content.json` for its French translation, then commit both files to `main`. GitHub Actions builds the website and publishes it through GitHub Pages. Each article must use the same English slug in both languages. The build refuses to publish mismatched article sets.
 
-- `news` : ajouter un objet avec un `slug` unique (lettres minuscules et tirets), une date ISO `AAAA-MM-JJ`, une catégorie, un titre, un résumé et des paragraphes. Les articles sont triés du plus récent au plus ancien.
-- `releases` : ajouter les versions en tête de liste, avec leurs changements et leurs limites.
-- `roadmap` : modifier les objectifs et leur statut, sans présenter les travaux prévus comme déjà disponibles.
-- `leetchiUrl` dans `content.json` : remplacer `null` par l’URL HTTPS exacte de la cagnotte. Ce destinataire est partagé entre les deux langues. Le bouton de don apparaît automatiquement. Tant que l’URL manque, le site annonce simplement que la cagnotte sera ajoutée.
+- `news`: add an article with a unique lowercase, hyphenated English `slug`, an ISO `YYYY-MM-DD` date, a category, a title, a summary and paragraphs. Articles are sorted newest first.
+- `releases`: add new versions at the beginning of the list, including their changes and limitations.
+- `roadmap`: update future goals and their status. Do not present planned work as available functionality.
+- `site.config.json`: stores the website URL and the shared `leetchiUrl`. Replace `null` with the exact HTTPS fundraiser URL to show the donation button in both languages. Until it is configured, the site displays a fundraiser-pending message.
 
-Le contenu initial est un bilan du développement au 15 septembre 2026. Les versions du launcher présentées sont des versions de développement. Aucun téléchargement public n’est annoncé.
+The initial content reflects development progress as of September 15, 2026. The listed launcher versions are development builds. The site does not announce a public multiplayer download.
 
-## Développement local
+## Repository language and translations
 
-Avec Node.js 22 ou plus récent :
+English is the repository's working language: documentation, code comments, workflow labels, identifiers and new article paths must be written in English. French visitor-facing text belongs under `locales/fr/`.
+
+- `content.json`: default English articles, release notes and roadmap.
+- `i18n.mjs`: English interface copy and locale registration.
+- `locales/fr/content.json`: French content translations.
+- `locales/fr/ui.json`: French interface translations, including the native language name.
+- `legacy-routes.json`: compatibility redirects for already-published article URLs. Historical French URL strings are retained only so existing links keep working.
+- `legacy-anchors.json`: compatibility aliases for previously shared section links.
+
+English pages are published at the root and French pages under `/fr/`. Both use English article paths under `news/`. Language links preserve article identity and section anchors.
+
+## Local development
+
+With Node.js 22 or later:
 
 ```sh
 node build.mjs
@@ -25,10 +38,10 @@ node check.mjs
 python -m http.server 4173 --directory dist
 ```
 
-Ouvrir http://localhost:4173. `build.mjs` échappe les textes, génère les pages HTML, les métadonnées et le sitemap dans `dist/`. Les actualités sont lisibles sans JavaScript. `check.mjs` vérifie les fichiers, les références locales et les ancres.
+Open http://localhost:4173. `build.mjs` escapes content and generates HTML pages, metadata, redirects and a sitemap in `dist/`. Articles remain readable without JavaScript. `check.mjs` validates files, local references, language metadata and section anchors.
 
-## Illustration
+## Artwork
 
-`assets/universe.png` est l’illustration originale du launcher SporeMP, créée avec Image Gen le 8 septembre 2026. Elle n’est ni une capture de gameplay ni un asset extrait de SPORE. SHA-256 : `5397f78275521e8bb8f7f4344c79e58bf6d16cdb36b0a1f66a3c5de6e625b184`.
+`assets/universe.png` is the original SporeMP launcher illustration, created with Image Gen on September 8, 2026. It is neither a gameplay screenshot nor an asset extracted from SPORE. SHA-256: `5397f78275521e8bb8f7f4344c79e58bf6d16cdb36b0a1f66a3c5de6e625b184`.
 
-SporeMP est un projet communautaire indépendant, non affilié à Electronic Arts ou Maxis. SPORE appartient à ses ayants droit.
+SporeMP is an independent community project, unaffiliated with Electronic Arts or Maxis. SPORE belongs to its respective rights holders.
