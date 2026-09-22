@@ -2,7 +2,7 @@
 
 Live website: https://raph559.github.io/sporemp-site/
 
-A bilingual static website, with English as the default and French available through the EN / FR selector. It has no npm dependencies, visitor accounts or trackers. This repository contains the website and its original illustration, without game files or private development data.
+A bilingual static website, with English as the default and French available through the EN / FR selector. It has no npm dependencies, visitor accounts or trackers. The current layout uses a CSS stage diagram. The repository retains earlier original project artwork as a source asset; no game files or private development data are included.
 
 ## Publish news and development updates
 
@@ -13,7 +13,7 @@ Edit `content.json` for English content and `locales/fr/content.json` for its Fr
 - `roadmap`: update future goals and their status. Do not present planned work as available functionality.
 - `site.config.json`: stores the website URL and the shared `leetchiUrl`. Replace `null` with the exact HTTPS fundraiser URL to show the donation button in both languages. Until it is configured, the site displays a fundraiser-pending message.
 
-The initial content reflects development progress as of September 15, 2026. The listed launcher versions are development builds. The site does not announce a public multiplayer download.
+The current content includes the recorded M08 Creature-stage test results from September 22, 2026. M09 recovery is next. The listed launcher versions are development builds; there is no public multiplayer download.
 
 ## Repository language and translations
 
@@ -38,10 +38,10 @@ node check.mjs
 python -m http.server 4173 --directory dist
 ```
 
-Open http://localhost:4173. `build.mjs` escapes content and generates HTML pages, metadata, redirects and a sitemap in `dist/`. Articles remain readable without JavaScript. `check.mjs` validates files, local references, language metadata and section anchors.
+Open http://localhost:4173. `build.mjs` clears its previous output, escapes content and generates HTML pages, metadata, redirects and a sitemap in `dist/`. Articles remain readable without JavaScript. `check.mjs` validates files, local references, language metadata and section anchors.
 
 ## Artwork
 
-`assets/universe.png` is the original SporeMP launcher illustration, created with Image Gen on September 8, 2026. It is neither a gameplay screenshot nor an asset extracted from SPORE. SHA-256: `5397f78275521e8bb8f7f4344c79e58bf6d16cdb36b0a1f66a3c5de6e625b184`.
+`assets/universe.png` is the earlier SporeMP launcher illustration, created with Image Gen on September 8, 2026. It is retained in source but is not included in the current generated website. It is neither a gameplay screenshot nor an asset extracted from SPORE. SHA-256: `5397f78275521e8bb8f7f4344c79e58bf6d16cdb36b0a1f66a3c5de6e625b184`.
 
 SporeMP is an independent community project, unaffiliated with Electronic Arts or Maxis. SPORE belongs to its respective rights holders.
