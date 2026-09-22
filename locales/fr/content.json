@@ -1,19 +1,6 @@
 {
   "news": [
     {
-      "slug": "recover-a-shared-creature-world",
-      "date": "2026-09-22",
-      "category": "Développement",
-      "title": "Un monde Créature partagé survit à un redémarrage",
-      "summary": "Dans un essai enregistré avec deux joueurs, le SPORE original a retrouvé les mêmes personnages et leur progression après le redémarrage du serveur.",
-      "paragraphs": [
-        "Dans un essai contrôlé à l’étape Créature, une instance dédiée du SPORE original a sauvegardé un monde avec deux joueurs. Après le redémarrage du coordinateur et du jeu dédié, deux nouveaux clients du jeu original se sont reconnectés avec les mêmes personnages, les objets testés, la progression en ADN et la propriété d’une création partagée.",
-        "Les essais ont interrompu la sauvegarde native avant son exécution et juste après sa réussite. Ils ont aussi arrêté le coordinateur à cinq étapes de la publication d’un nouveau point de sauvegarde. Chaque récupération a chargé un état complet sélectionné. La répétition d’actions n’a pas attribué une deuxième fois la progression.",
-        "La session restaurée dispose d’un délai fixe de cinq minutes pour terminer son prochain point de sauvegarde durable. Un opérateur doit explicitement sauvegarder dans le jeu original, arrêter l’instance de test, sceller et valider le résultat, puis redémarrer. La rotation périodique automatique n’est pas implémentée.",
-        "M09 est validé uniquement pour cette configuration précise avec deux joueurs à l’étape Créature. Les sauvegardes quelconques, les autres étapes, l’hébergement autonome et la campagne multijoueur complète restent à vérifier. M10 portera sur le déplacement entre des lieux simulés séparément. Il n’y a toujours pas de téléchargement public du multijoueur."
-      ]
-    },
-    {
       "slug": "creations-without-interrupting-play",
       "date": "2026-09-22",
       "category": "Développement",
@@ -77,16 +64,6 @@
   ],
   "releases": [
     {
-      "version": "0.1.11",
-      "date": "2026-09-22",
-      "title": "Indiquer quand une sauvegarde partagée est récupérée",
-      "changes": [
-        "Rejoin indique quand la sauvegarde partagée préparée a été restaurée et que la scène du jeu original est prête.",
-        "L’état de récupération dépend du point de sauvegarde restauré et de la scène chargée, pas seulement d’une demande en attente."
-      ],
-      "note": "Version de développement pour un monde Créature préparé. Le nouveau message du lanceur a passé les tests logiciels, mais n’a pas été vérifié visuellement pendant l’essai natif. La récupération demande encore des actions explicites de l’hôte ; aucun téléchargement multijoueur public n’est disponible."
-    },
-    {
       "version": "0.1.10",
       "date": "2026-09-22",
       "title": "Des vérifications du monde plus claires",
@@ -133,27 +110,23 @@
   ],
   "roadmap": [
     {
-      "title": "Restaurer un monde partagé",
-      "status": "Validé en essai",
-      "state": "done",
-      "description": "M09 : un monde Créature précis avec deux joueurs a retrouvé ses personnages, sa progression et la propriété des créations après de vraies interruptions. Un nouveau point de sauvegarde exige encore une procédure explicite dans les cinq minutes suivant la récupération."
+      "title": "Garder sa progression après un redémarrage",
+      "status": "Prochaine étape",
+      "description": "M09 : conserver les points de sauvegarde natifs et les versions des créations, se reconnecter et récupérer les modifications interrompues après un redémarrage du serveur."
     },
     {
-      "title": "Relier des lieux séparés",
-      "status": "Prochaine étape",
-      "state": "next",
-      "description": "M10 : transférer les joueurs entre des lieux simulés séparément dans le même univers, avec une autorité qui empêche les avatars perdus ou dupliqués."
+      "title": "Explorer séparément. Se retrouver.",
+      "status": "Prévu",
+      "description": "Relier des lieux simulés séparément dans un univers canonique commun, avec des transferts sûrs et des conséquences partagées."
     },
     {
       "title": "De la Cellule à l’Espace",
       "status": "Prévu",
-      "state": "planned",
       "description": "Couvrir les cinq étapes, leurs éditeurs et leurs transitions, avec une progression indépendante pour chaque joueur."
     },
     {
       "title": "Préparer l’arrivée des joueurs",
       "status": "Prévu",
-      "state": "planned",
       "description": "Simplifier l’installation et l’hébergement sur Internet, puis tester toute la campagne avant une sortie publique."
     }
   ]
