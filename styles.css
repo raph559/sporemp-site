@@ -147,14 +147,16 @@ h3 { font-size: clamp(1.6rem, 2.2vw, 2.25rem); line-height: 1.18; margin: 0 0 18
 #roadmap .section-heading > p { color: #e4eada; }
 .roadmap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; padding: 0; margin: 38px 0 0; list-style: none; }
 .roadmap-step { min-height: 225px; padding: 25px; border: 1px solid #adbfad75; }
-.roadmap-step:first-child { background: #e5ebd0; color: #183834; }
-.roadmap-step:first-child .tag { background: #fff9e9; color: #8f3d2b; border-color: #bd7a60; }
-.roadmap-step:not(:first-child) .tag { color: #ebeed8; border-color: #adcbb5; }
+.roadmap-step.done { background: #dfe9df; color: #183834; }
+.roadmap-step.next { background: #f5dfbd; color: #183834; }
+.roadmap-step.done .tag { background: #f6fcf3; color: #2b694c; border-color: #609674; }
+.roadmap-step.next .tag { background: #fff9e9; color: #8f3d2b; border-color: #bd7a60; }
+.roadmap-step.planned .tag { color: #ebeed8; border-color: #adcbb5; }
 .step-number { display: inline-block; margin-right: 17px; color: #c9d5c1; font-size: 13px; font-weight: 800; }
-.roadmap-step:first-child .step-number { color: #32665a; }
+.roadmap-step.done .step-number, .roadmap-step.next .step-number { color: #32665a; }
 .roadmap h3 { margin: 25px 0 10px; font-size: clamp(1.55rem, 2.3vw, 2.3rem); }
 .roadmap p { max-width: 470px; margin-bottom: 0; color: #e0e7db; font-size: 15px; line-height: 1.65; }
-.roadmap-step:first-child p { color: #31504a; }
+.roadmap-step.done p, .roadmap-step.next p { color: #31504a; }
 .roadmap-note { margin: 25px 0 0; color: #ecf0df; font-size: 14px; line-height: 1.55; }
 
 .support-section { padding-bottom: 80px; }

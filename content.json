@@ -1,6 +1,19 @@
 {
   "news": [
     {
+      "slug": "recover-a-shared-creature-world",
+      "date": "2026-09-22",
+      "category": "Development",
+      "title": "A shared Creature world survives a restart",
+      "summary": "In a recorded two-player test, the original SPORE restored the same characters and progress after the server restarted.",
+      "paragraphs": [
+        "In a controlled Creature-stage test, a dedicated copy of the original SPORE saved a world with two players. After the coordinator and game worker restarted, two fresh original-game clients rejoined with the same characters, tested items, DNA progress and ownership of a shared creation.",
+        "The tests interrupted the original save before it ran and just after it completed. They also stopped the coordinator at five points while publishing a new checkpoint. Each recovery loaded a complete selected state. Resubmitted actions did not award progress a second time.",
+        "The restored session has a fixed five-minute limit to complete its next durable checkpoint. An operator must explicitly save through the original game, shut down the test worker, seal and commit the result, and restart. Automatic periodic checkpoint rotation is not implemented.",
+        "M09 is verified only for this pinned two-player Creature test setup. Arbitrary saves, other stages, unattended hosting and the full multiplayer campaign remain unverified. M10 will test travel between separately simulated locations. There is still no public multiplayer download."
+      ]
+    },
+    {
       "slug": "creations-without-interrupting-play",
       "date": "2026-09-22",
       "category": "Development",
@@ -64,6 +77,16 @@
   ],
   "releases": [
     {
+      "version": "0.1.11",
+      "date": "2026-09-22",
+      "title": "Show when a shared save is recovered",
+      "changes": [
+        "Rejoin reports when the prepared shared save has been restored and the original-game scene is ready.",
+        "Keep recovery status tied to the restored checkpoint and applied scene, rather than a pending request."
+      ],
+      "note": "Development build for a prepared Creature test world. The new launcher message passed host tests but was not visually checked during the native run. Recovery still needs an explicit host workflow; there is no public multiplayer download."
+    },
+    {
       "version": "0.1.10",
       "date": "2026-09-22",
       "title": "Clearer shared-world checks",
@@ -110,23 +133,27 @@
   ],
   "roadmap": [
     {
-      "title": "Keep progress through restarts",
-      "status": "Up next",
-      "description": "M09: preserve native checkpoints and creation versions, reconnect safely and recover interrupted changes after a server restart."
+      "title": "Restore a shared world",
+      "status": "Verified in tests",
+      "state": "done",
+      "description": "M09: a pinned two-player Creature world recovered its tested characters, progress and creation ownership after real interruptions. Another checkpoint requires an explicit workflow within five minutes of recovery."
     },
     {
-      "title": "Explore apart. Meet again.",
-      "status": "Planned",
-      "description": "Connect separately simulated locations in one canonical universe, with safe transfers and shared consequences."
+      "title": "Connect separate locations",
+      "status": "Up next",
+      "state": "next",
+      "description": "M10: transfer players between separately simulated locations in one universe, with authority changes that prevent duplicate or lost avatars."
     },
     {
       "title": "From Cell to Space",
       "status": "Planned",
+      "state": "planned",
       "description": "Cover all five stages, their editors and transitions, with independent progression for each player."
     },
     {
       "title": "Make it ready for players",
       "status": "Planned",
+      "state": "planned",
       "description": "Simplify installation and Internet hosting, then test the complete campaign before a public release."
     }
   ]

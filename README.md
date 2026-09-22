@@ -13,7 +13,7 @@ Edit `content.json` for English content and `locales/fr/content.json` for its Fr
 - `roadmap`: update future goals and their status. Do not present planned work as available functionality.
 - `site.config.json`: stores the website URL and the shared `leetchiUrl`. Replace `null` with the exact HTTPS fundraiser URL to show the donation button in both languages. Until it is configured, the site displays a fundraiser-pending message.
 
-The current content includes the recorded M08 Creature-stage test results from September 22, 2026. M09 recovery is next. The listed launcher versions are development builds; there is no public multiplayer download.
+The current content includes the recorded M09 recovery result for a pinned two-player Creature test setup from September 22, 2026. M10 location transfers are next. The listed launcher versions are development builds; there is no public multiplayer download.
 
 ## Repository language and translations
 
