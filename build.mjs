@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, rm, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -16,25 +16,24 @@ if (en.news.map(n => n.slug).join() !== fr.news.map(n => n.slug).join()) throw n
 await rm(output, { recursive: true, force: true });
 await mkdir(join(output, 'assets/fonts'), { recursive: true });
 const hash = data => createHash('sha256').update(data).digest('hex').slice(0, 12);
+const sourceText = async path => (await readFile(join(directory, path), 'utf8')).replace(/\r\n?/g, '\n');
 const font = await readFile(join(directory, 'assets/fonts/outfit-variable.ttf'));
 const planet = await readFile(join(directory, 'assets/shared-planet.png'));
 const stages = await readFile(join(directory, 'assets/evolution-worlds.png'));
-const js = await readFile(join(directory, 'interactions.js'));
+const js = await sourceText('interactions.js');
 const fontName = `outfit-${hash(font)}.ttf`;
-const css = (await readFile(join(directory, 'design.css'), 'utf8')).replace('./fonts/outfit-variable.ttf', `./fonts/${fontName}`);
+const css = (await sourceText('design.css')).replace('./fonts/outfit-variable.ttf', `./fonts/${fontName}`);
 const assets = { css: `assets/design-${hash(css)}.css`, js: `assets/interactions-${hash(js)}.js`, planet: `assets/shared-planet-${hash(planet)}.png`, stages: `assets/evolution-worlds-${hash(stages)}.png`, font: `assets/fonts/${fontName}` };
 await Promise.all([
   writeFile(join(output, assets.css), css), writeFile(join(output, assets.js), js),
   writeFile(join(output, assets.planet), planet), writeFile(join(output, assets.font), font),
   writeFile(join(output, assets.stages), stages),
-  copyFile(join(directory, 'assets/favicon.svg'), join(output, 'assets/favicon.svg')),
-  copyFile(join(directory, 'assets/credits.txt'), join(output, 'assets/credits.txt')),
-  copyFile(join(directory, 'assets/fonts/OFL.txt'), join(output, 'assets/fonts/OFL.txt'))
+  ...['assets/favicon.svg', 'assets/credits.txt', 'assets/fonts/OFL.txt'].map(async path => writeFile(join(output, path), await sourceText(path)))
 ]);
 const pages = [];
 async function page(path, html, index = true) {
   await mkdir(dirname(join(output, path)), { recursive: true });
-  await writeFile(join(output, path), html);
+  await writeFile(join(output, path), html.replace(/\r\n?/g, '\n'));
   if (index) pages.push(path.replace(/index\.html$/, ''));
 }
 for (const content of [en, fr]) {
