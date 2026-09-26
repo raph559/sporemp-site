@@ -4,7 +4,7 @@ A completely new, bilingual presentation and development journal, built as a sma
 
 ## Build
 
-Node.js 22 or later; no package installation or runtime service required.
+Node.js 22 or later; no package installation or runtime service required. The build fetches Outfit and its license from a pinned official revision and verifies both SHA-256 values. Network access is required at build time; the generated website serves its own font files.
 
 ```powershell
 node website/build.mjs
@@ -19,7 +19,7 @@ From this directory, use `node build.mjs` and `node check.mjs`. Output goes to `
 - `src/render.mjs`: new static HTML templates and route-aware navigation.
 - `design.css`: new responsive visual system. Body text is 16px or larger; smaller type is reserved for secondary labels.
 - `interactions.js`: mobile navigation, keyboard-accessible stage tabs, section indicators, and language/bookmark continuity.
-- `assets/`: original new hero illustration, locally hosted Outfit font and license, favicon, and provenance.
+- `assets/`: the two original illustrations, favicon, and provenance. The pinned Outfit font and license are fetched by the build and included only in generated output.
 - `site.config.json`: canonical URL and the user-supplied Leetchi fundraiser.
 
 English is at `/`; French is at `/fr/`. Journal archives are `/news/` and `/fr/news/`. Existing article URLs continue to work with freshly written articles; three historic French routes redirect to their counterparts. Existing section bookmarks are translated by the new script. The language switch preserves the current article or section, including the selected stage.
