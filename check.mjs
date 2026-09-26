@@ -3,6 +3,7 @@ import { dirname, join, resolve, extname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), 'dist');
+const config = JSON.parse(await readFile(join(dirname(root), 'site.config.json'), 'utf8'));
 const failures = [];
 const files = [];
 async function walk(folder) {
@@ -29,11 +30,12 @@ for (const file of htmlFiles) {
     if (ids.length !== new Set(ids).size) failures.push(`${label}: duplicate IDs`);
   }
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
-    const href = match[1];
-    if (/^(https?:|mailto:|data:)/.test(href)) continue;
+    const siteAbsolute = match[1].startsWith(config.siteUrl);
+    const href = siteAbsolute ? match[1].slice(config.siteUrl.length) : match[1];
+    if (!siteAbsolute && /^(https?:|mailto:|data:)/.test(href)) continue;
     checkedLinks++;
     const [path, fragment] = href.split('#');
-    let target = path ? resolve(dirname(file), path.split('?')[0]) : file;
+    let target = siteAbsolute ? resolve(root, path.split('?')[0] || '.') : path ? resolve(dirname(file), path.split('?')[0]) : file;
     if (!target.startsWith(root + '/') && !target.startsWith(root + '\\') && target !== root) {
       failures.push(`${label}: path escapes output: ${href}`); continue;
     }

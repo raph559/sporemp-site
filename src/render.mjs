@@ -11,7 +11,7 @@ export function render(c, config, manifest, kind = 'home', article) {
   const route = kind === 'article' ? `news/${article.slug}.html` : kind === 'archive' ? 'news/' : kind === '404' ? '404.html' : '';
   const file = `${prefix}${route}`;
   const depth = file.split('/').filter(Boolean).length - (file.endsWith('/') || !file ? 0 : 1);
-  const root = '../'.repeat(depth);
+  const root = kind === '404' ? config.siteUrl : '../'.repeat(depth);
   const home = `${root}${prefix}` || './';
   const alternate = `${root}${c.lang === 'en' ? 'fr/' : ''}${route}` || './';
   const asset = key => root + manifest[key];
